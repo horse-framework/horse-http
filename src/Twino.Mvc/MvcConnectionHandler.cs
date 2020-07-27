@@ -175,7 +175,7 @@ namespace Twino.Mvc
             if (!await ExecuteBeforeControllerFilters(match, context, response))
                 return;
 
-            TwinoController controller = await Mvc.ControllerFactory.CreateInstance(Mvc, match.Route.ControllerType, request, response, scope);
+            TwinoController controller = Mvc.ControllerFactory.CreateInstance(Mvc, match.Route.ControllerType, request, response, scope);
             if (controller == null)
             {
                 WriteResponse(response, Mvc.NotFoundResult);
