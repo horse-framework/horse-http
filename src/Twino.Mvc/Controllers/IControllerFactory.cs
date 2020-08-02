@@ -15,7 +15,7 @@ namespace Twino.Mvc.Controllers
         /// <summary>
         /// Creates new instance of a TwinoController object
         /// </summary>
-        Task<TwinoController> CreateInstance(TwinoMvc mvc, Type controllerType, HttpRequest request, HttpResponse response, IContainerScope scope);
+        TwinoController CreateInstance(TwinoMvc mvc, Type controllerType, HttpRequest request, HttpResponse response, IContainerScope scope);
 
     }
 }

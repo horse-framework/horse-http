@@ -32,10 +32,10 @@ namespace Test.Mvc
             RouteMatch match = mvc.RouteFinder.Find(mvc.Routes, request);
             Assert.NotNull(match);
 
-            TwinoController controller = await mvc.ControllerFactory.CreateInstance(mvc, match.Route.ControllerType, request, response, mvc.Services.CreateScope());
+            TwinoController controller = mvc.ControllerFactory.CreateInstance(mvc, match.Route.ControllerType, request, response, mvc.Services.CreateScope());
 
             MvcConnectionHandler handler = new MvcConnectionHandler(mvc, null);
-            
+
             var parameters = (await handler.FillParameters(request, match)).Select(x => x.Value).ToArray();
             Task<IActionResult> task = (Task<IActionResult>) match.Route.ActionType.Invoke(controller, parameters);
 

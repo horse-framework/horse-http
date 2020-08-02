@@ -15,7 +15,7 @@ namespace Twino.Mvc.Controllers
         /// <summary>
         /// Creates new instance of a TwinoController object
         /// </summary>
-        public async Task<TwinoController> CreateInstance(TwinoMvc mvc, Type controllerType, HttpRequest request, HttpResponse response, IContainerScope scope)
+        public TwinoController CreateInstance(TwinoMvc mvc, Type controllerType, HttpRequest request, HttpResponse response, IContainerScope scope)
         {
             ConstructorInfo[] constructors = controllerType.GetConstructors(BindingFlags.Public | BindingFlags.Instance);
 
@@ -36,13 +36,13 @@ namespace Twino.Mvc.Controllers
                 ParameterInfo p = parameters[i];
                 Type type = p.ParameterType;
 
-                object value = await mvc.Services.Get(type, scope);
+                object value =  mvc.Services.Get(type, scope);
 
                 if (typeof(IContainerScope).IsAssignableFrom(type))
                     values[i] = scope;
                 else
                 {
-                    object v = await mvc.Services.Get(type, scope);
+                    object v =  mvc.Services.Get(type, scope);
                     values[i] = v;
                 }
 
