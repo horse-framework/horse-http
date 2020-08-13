@@ -1,12 +1,10 @@
 # Twino MVC
 
+[![NuGet](https://img.shields.io/nuget/v/Twino.Mvc?label=mvc%20nuget)](https://www.nuget.org/packages/Twino.Mvc)
+[![NuGet](https://img.shields.io/nuget/v/Twino.Mvc.Auth.Jwt?label=jwt%20extension%20nuget)](https://www.nuget.org/packages/Twino.Mvc.Auth.Jwt)
+[![NuGet](https://img.shields.io/nuget/v/Twino.Protocols.Http?label=http%20server%20nuget)](https://www.nuget.org/packages/Twino.Protocols.Http)
+
 Twino MVC is an HTTP Server with MVC Architecture. It's usage is very similar to ASP.NET Core and faster. You can also ise core Protocols.Http library for basic HTTP server without MVC.
-
-## NuGet Packages
-
-**[Twino MVC](https://www.nuget.org/packages/Twino.Mvc)**<br>
-**[Twino MVC JWT Auth Library](https://www.nuget.org/packages/Twino.Mvc.Auth.Jwt)**<br>
-**[Twino HTTP Server](https://www.nuget.org/packages/Twino.Protocols.Http)**<br>
 
 
 ### Basic Example
@@ -153,3 +151,10 @@ Twino MVC is an HTTP Server with MVC Architecture. It's usage is very similar to
             server.BlockWhileRunning();
         }
     }
+
+
+## Thanks
+
+Thanks to JetBrains for a open source license to use on this project.
+
+[![jetbrains](https://user-images.githubusercontent.com/21208762/90192662-10043700-ddcc-11ea-9533-c43b99801d56.png)](https://www.jetbrains.com/?from=twino-framework)
