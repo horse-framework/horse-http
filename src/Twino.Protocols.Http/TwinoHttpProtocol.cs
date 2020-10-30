@@ -190,16 +190,16 @@ namespace Twino.Protocols.Http
 
             if (!string.IsNullOrEmpty(message.Request.Upgrade))
             {
-                if (!string.IsNullOrEmpty(message.Request.Upgrade))
-                {
-                    ConnectionData data = new ConnectionData();
-                    data.Path = message.Request.Path;
-                    data.Method = message.Request.Method;
-                    data.SetProperties(message.Request.Headers);
-
-                    await _server.SwitchProtocol(info, message.Request.Upgrade, data);
-                    return HandleStatus.ExitWithoutClosing;
-                }
+                ConnectionData data = new ConnectionData();
+                data.Path = message.Request.Path;
+                data.Method = message.Request.Method;
+                data.SetProperties(message.Request.Headers);
+                
+                if (!string.IsNullOrEmpty(message.Request.QueryStringData))
+                    data.Path += "?" + message.Request.QueryStringData;
+                
+                await _server.SwitchProtocol(info, message.Request.Upgrade, data);
+                return HandleStatus.ExitWithoutClosing;
             }
 
             HttpReader.ReadContent(message.Request);
