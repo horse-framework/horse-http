@@ -5,7 +5,7 @@
   "ContentEncoding": "br, gzip, deflate",
   "Hosts": [
     {
-      "Port": 441,
+      "Port": 4410,
       "SslEnabled": false,
       "SslCertificate": "lc1024.pfx",
       "CertificateKey": "",

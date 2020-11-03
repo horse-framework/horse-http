@@ -4,8 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using Microsoft.Extensions.DependencyInjection;
 using Twino.Core;
-using Twino.Ioc;
 using Twino.Mvc.Auth;
 using Twino.Mvc.Controllers;
 using Twino.Mvc.Errors;
@@ -20,7 +20,7 @@ namespace Twino.Mvc
     /// <summary>
     /// Twino Facade object of Twino HTTP Server
     /// </summary>
-    public class TwinoMvc : IDisposable
+    public class TwinoMvc
     {
         #region Properties
 
@@ -46,9 +46,9 @@ namespace Twino.Mvc
         public Dictionary<HttpStatusCode, IActionResult> StatusCodeResults { get; } = new Dictionary<HttpStatusCode, IActionResult>();
 
         /// <summary>
-        /// Twino MVC Dependency Injection service container
+        /// Microsoft Dependency Injection Service Provider
         /// </summary>
-        public IServiceContainer Services { get; private set; }
+        public IServiceProvider ServiceProvider { get; private set; }
 
         /// <summary>
         /// Twino MVC Route finder. For every HTTP Request, this finder matches the request Path with Routes list.
@@ -92,7 +92,7 @@ namespace Twino.Mvc
         /// <summary>
         /// Mvc application builder
         /// </summary>
-        internal MvcAppBuilder AppBuilder { get; private set; }
+        internal MvcAppBuilder AppBuilder { get; }
 
         /// <summary>
         /// Default JSON serialization options for input models.
@@ -106,6 +106,8 @@ namespace Twino.Mvc
         /// </summary>
         public JsonSerializationOptions JsonOutputOptions { get; } = new JsonSerializationOptions();
 
+        private readonly IServiceCollection _services;
+
         #endregion
 
         #region Constructors - Destructors
@@ -116,7 +118,6 @@ namespace Twino.Mvc
         public TwinoMvc()
         {
             Routes = new List<RouteLeaf>();
-            Services = new ServiceContainer();
             RouteFinder = new RouteFinder();
             ControllerFactory = new ControllerFactory();
             NotFoundResult = StatusCodeResult.NotFound();
@@ -124,14 +125,8 @@ namespace Twino.Mvc
             Policies = new PolicyContainer();
 
             AppBuilder = new MvcAppBuilder(this);
-        }
 
-        /// <summary>
-        /// Disposes Twino MVC and stops the HTTP Server
-        /// </summary>
-        public void Dispose()
-        {
-            Services = new ServiceContainer();
+            _services = new ServiceCollection();
         }
 
         #endregion
@@ -141,10 +136,11 @@ namespace Twino.Mvc
         /// <summary>
         /// Inits Twino MVC
         /// </summary>
-        public void Init(Action<TwinoMvc> action)
+        public void Init(Action<IServiceCollection> action)
         {
             Init();
-            action(this);
+            action(_services);
+            ServiceProvider = _services.BuildServiceProvider();
         }
 
         /// <summary>
@@ -195,6 +191,7 @@ namespace Twino.Mvc
                     continue;
 
                 leaves.AddRange(builder.BuildRoutes(type));
+                _services.AddTransient(type);
             }
 
             foreach (RouteLeaf root in leaves)

@@ -10,6 +10,11 @@ namespace Twino.Mvc.Middlewares
     public interface IMvcAppBuilder
     {
         /// <summary>
+        /// Gets MSDI service provider for twino mvc
+        /// </summary>
+        IServiceProvider GetProvider();
+        
+        /// <summary>
         /// Uses middleware from instance
         /// </summary>
         void UseMiddleware(IMiddleware middleware);

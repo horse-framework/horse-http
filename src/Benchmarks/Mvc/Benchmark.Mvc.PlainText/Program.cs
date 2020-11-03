@@ -1,4 +1,5 @@
-﻿using Twino.Mvc;
+﻿using System;
+using Twino.Mvc;
 using Twino.Server;
 
 namespace Benchmark.Mvc.PlainText
@@ -7,10 +8,21 @@ namespace Benchmark.Mvc.PlainText
     {
         static void Main(string[] args)
         {
-            TwinoMvc mvc = new TwinoMvc();
             TwinoServer server = new TwinoServer();
-            mvc.Init();
+            
+            TwinoMvc mvc = new TwinoMvc();
+            mvc.Init(services =>
+            {
+
+            });
+
+            mvc.Use(app =>
+            {
+                IServiceProvider provider = app.GetProvider();
+            });
+            
             server.UseMvc(mvc);
+            
             server.Start(5000);
             server.BlockWhileRunning();
         }

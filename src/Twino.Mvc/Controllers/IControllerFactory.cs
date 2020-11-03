@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Threading.Tasks;
-using Twino.Ioc;
+using Microsoft.Extensions.DependencyInjection;
 using Twino.Protocols.Http;
 
 namespace Twino.Mvc.Controllers
@@ -11,11 +10,9 @@ namespace Twino.Mvc.Controllers
     /// </summary>
     public interface IControllerFactory
     {
-
         /// <summary>
         /// Creates new instance of a TwinoController object
         /// </summary>
-        TwinoController CreateInstance(TwinoMvc mvc, Type controllerType, HttpRequest request, HttpResponse response, IContainerScope scope);
-
+        TwinoController CreateInstance(TwinoMvc mvc, Type controllerType, HttpRequest request, HttpResponse response, IServiceScope scope);
     }
 }

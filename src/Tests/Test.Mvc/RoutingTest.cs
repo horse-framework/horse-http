@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Test.Mvc.Arrange;
 using Twino.Mvc;
 using Twino.Mvc.Controllers;
@@ -32,7 +33,11 @@ namespace Test.Mvc
             RouteMatch match = mvc.RouteFinder.Find(mvc.Routes, request);
             Assert.NotNull(match);
 
-            TwinoController controller = mvc.ControllerFactory.CreateInstance(mvc, match.Route.ControllerType, request, response, mvc.Services.CreateScope());
+            TwinoController controller = mvc.ControllerFactory.CreateInstance(mvc, 
+                                                                              match.Route.ControllerType, 
+                                                                              request, 
+                                                                              response, 
+                                                                              mvc.ServiceProvider.CreateScope());
 
             MvcConnectionHandler handler = new MvcConnectionHandler(mvc, null);
 
