@@ -140,7 +140,6 @@ namespace Twino.Mvc
         {
             Init();
             action(_services);
-            ServiceProvider = _services.BuildServiceProvider();
         }
 
         /// <summary>
@@ -191,7 +190,7 @@ namespace Twino.Mvc
                     continue;
 
                 leaves.AddRange(builder.BuildRoutes(type));
-                _services.AddTransient(type);
+                _services.AddScoped(type);
             }
 
             foreach (RouteLeaf root in leaves)
@@ -219,10 +218,19 @@ namespace Twino.Mvc
         /// </summary>
         public void Use(Action<IMvcAppBuilder> action)
         {
+            ServiceProvider = _services.BuildServiceProvider();
             if (action != null)
                 action(AppBuilder);
         }
 
+        /// <summary>
+        /// Runs Twino MVC Server as async without middleware implementation
+        /// </summary>
+        public void Use()
+        {
+            ServiceProvider = _services.BuildServiceProvider();
+        }
+        
         #endregion
     }
 }

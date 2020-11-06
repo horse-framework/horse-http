@@ -23,6 +23,7 @@ namespace Test.Mvc
             TwinoMvc mvc = new TwinoMvc();
             mvc.Init();
             mvc.CreateRoutes(Assembly.GetExecutingAssembly());
+            mvc.Use();
 
             HttpRequest request = new HttpRequest();
             request.Method = method;
