@@ -21,8 +21,7 @@ namespace Sample.Http.Server
                     response.StatusCode = HttpStatusCode.NotFound;
             });
 
-            server.Start(82);
-            server.BlockWhileRunning();
+            server.Run(22);
         }
     }
 }

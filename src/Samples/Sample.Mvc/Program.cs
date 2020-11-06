@@ -2,6 +2,7 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Twino.Mvc;
 using Twino.Mvc.Auth;
 using Twino.Mvc.Auth.Jwt;
@@ -24,7 +25,7 @@ namespace Sample.Mvc
 
         public async Task Invoke(HttpRequest request, HttpResponse response, MiddlewareResultHandler setResult)
         {
-            Console.WriteLine("tmid");
+            Console.WriteLine("TMid Middleware");
             await Task.CompletedTask;
         }
     }
@@ -42,16 +43,16 @@ namespace Sample.Mvc
     {
         static void Main(string[] args)
         {
-            using TwinoMvc mvc = new TwinoMvc();
+            TwinoMvc mvc = new TwinoMvc();
 
             mvc.IsDevelopment = false;
-            mvc.Init(twino =>
+            mvc.Init(services =>
             {
-                twino.Services.AddScoped<IScopedService, ScopedService>();
-                twino.Services.AddTransient<IFirstService, FirstService>();
-                twino.Services.AddTransient<ISecondService, SecondService>();
+                services.AddScoped<IScopedService, ScopedService>();
+                services.AddTransient<IFirstService, FirstService>();
+                services.AddTransient<ISecondService, SecondService>();
 
-                twino.AddJwt(options =>
+                services.AddJwt(mvc, options =>
                 {
                     options.Key = "Very_very_secret_key";
                     options.Issuer = "localhost";
@@ -62,11 +63,11 @@ namespace Sample.Mvc
                     options.ValidateLifetime = true;
                 });
 
-                twino.Policies.Add(Policy.RequireRole("Admin", "Admin"));
-                twino.Policies.Add(Policy.RequireClaims("IT", "Database", "Cloud", "Source"));
-                twino.Policies.Add(Policy.Custom("Custom", (d, c) => true));
+                mvc.Policies.Add(Policy.RequireRole("Admin", "Admin"));
+                mvc.Policies.Add(Policy.RequireClaims("IT", "Database", "Cloud", "Source"));
+                mvc.Policies.Add(Policy.Custom("Custom", (d, c) => true));
 
-                twino.StatusCodeResults.Add(HttpStatusCode.Unauthorized, new JsonResult(new {Message = "Access denied"}));
+                mvc.StatusCodeResults.Add(HttpStatusCode.Unauthorized, new JsonResult(new {Message = "Access denied"}));
 
                 mvc.ErrorHandler = new MvcErrorHandler();
             });
@@ -85,7 +86,7 @@ namespace Sample.Mvc
             var opt = HttpOptions.CreateDefault();
             opt.HttpConnectionTimeMax = 0;
             server.UseMvc(mvc, opt);
-            server.Start(441);
+            server.Start(4410);
             server.BlockWhileRunning();
         }
     }

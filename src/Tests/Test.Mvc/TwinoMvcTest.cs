@@ -22,6 +22,7 @@ namespace Test.Mvc
             mvc.Init();
             Assembly asm = Assembly.GetExecutingAssembly();
             mvc.CreateRoutes(asm);
+            mvc.Use();
 
             TwinoServer server = new TwinoServer(ServerOptions.CreateDefault());
             server.UseMvc(mvc, HttpOptions.CreateDefault());

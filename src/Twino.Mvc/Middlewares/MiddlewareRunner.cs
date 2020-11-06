@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Twino.Ioc;
+using Microsoft.Extensions.DependencyInjection;
 using Twino.Protocols.Http;
 
 namespace Twino.Mvc.Middlewares
@@ -16,12 +16,10 @@ namespace Twino.Mvc.Middlewares
         /// </summary>
         internal IActionResult LastResult { get; private set; }
 
-        private readonly TwinoMvc _mvc;
-        private readonly IContainerScope _scope;
+        private readonly IServiceScope _scope;
 
-        public MiddlewareRunner(TwinoMvc mvc, IContainerScope scope)
+        public MiddlewareRunner(IServiceScope scope)
         {
-            _mvc = mvc;
             _scope = scope;
         }
 
@@ -62,13 +60,10 @@ namespace Twino.Mvc.Middlewares
             {
                 Type type = descriptor.ConstructorParameters[i];
 
-                if (typeof(IContainerScope).IsAssignableFrom(type))
+                if (typeof(IServiceScope).IsAssignableFrom(type))
                     parameters[i] = _scope;
                 else
-                {
-                    object o = _mvc.Services.Get(type, _scope);
-                    parameters[i] = o;
-                }
+                    parameters[i] = _scope.ServiceProvider.GetService(type);
             }
 
             return (IMiddleware) Activator.CreateInstance(descriptor.MiddlewareType, parameters);

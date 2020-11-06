@@ -26,6 +26,14 @@ namespace Twino.Mvc.Middlewares
         }
 
         /// <summary>
+        /// Gets MSDI service provider for twino mvc
+        /// </summary>
+        public IServiceProvider GetProvider()
+        {
+            return Mvc.ServiceProvider;
+        }
+
+        /// <summary>
         /// Uses singleton middleware objects.
         /// Same object is used for all requests
         /// </summary>

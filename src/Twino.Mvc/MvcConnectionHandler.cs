@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Microsoft.Extensions.DependencyInjection;
 using Twino.Core;
 using Twino.Core.Protocols;
-using Twino.Ioc;
 using Twino.Mvc.Auth;
 using Twino.Mvc.Controllers;
 using Twino.Mvc.Errors;
@@ -88,13 +88,13 @@ namespace Twino.Mvc
         /// </summary>
         private async Task RequestAsync(ITwinoServer server, HttpRequest request, HttpResponse response)
         {
-            IContainerScope scope = Mvc.Services.CreateScope();
+            IServiceScope scope = Mvc.ServiceProvider.CreateScope();
 
             try
             {
                 if (App.Descriptors.Count > 0)
                 {
-                    MiddlewareRunner runner = new MiddlewareRunner(Mvc, scope);
+                    MiddlewareRunner runner = new MiddlewareRunner(scope);
                     await runner.RunSequence(App, request, response);
                     if (runner.LastResult != null)
                     {
@@ -133,7 +133,7 @@ namespace Twino.Mvc
         /// <summary>
         /// Handles the request in MVC pattern
         /// </summary>
-        private async Task RequestMvc(ITwinoServer server, HttpRequest request, HttpResponse response, IContainerScope scope)
+        private async Task RequestMvc(ITwinoServer server, HttpRequest request, HttpResponse response, IServiceScope scope)
         {
             //find file route
             if (Mvc.FileRoutes.Count > 0)

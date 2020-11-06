@@ -12,8 +12,7 @@ namespace Benchmark.Mvc.Json
             TwinoServer server = new TwinoServer();
             mvc.Init();
             server.UseMvc(mvc, HttpOptions.CreateDefault());
-            server.Start();
-            server.BlockWhileRunning();
+            server.Run();
         }
     }
 }

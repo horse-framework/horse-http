@@ -2,8 +2,8 @@
 using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Twino.Core;
-using Twino.Ioc;
 using Twino.Mvc.Filters;
 using Twino.Mvc.Results;
 using Twino.Protocols.Http;
@@ -46,7 +46,7 @@ namespace Twino.Mvc.Controllers
         /// <summary>
         /// Gets IOC scope of the request
         /// </summary>
-        public IContainerScope CurrentScope { get; internal set; }
+        public IServiceScope CurrentScope { get; internal set; }
 
         #endregion
 
