@@ -21,8 +21,7 @@ namespace Benchmark.Json
                 await Task.CompletedTask;
             }, HttpOptions.CreateDefault());
 
-            server.Start();
-            server.BlockWhileRunning();
+            server.Run();
         }
     }
 }
