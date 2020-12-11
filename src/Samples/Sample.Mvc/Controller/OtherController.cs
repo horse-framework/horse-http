@@ -1,16 +1,16 @@
 ﻿using Sample.Mvc.Models;
 using System;
-using Twino.Mvc;
-using Twino.Mvc.Auth;
-using Twino.Mvc.Controllers;
-using Twino.Mvc.Controllers.Parameters;
-using Twino.Mvc.Filters.Route;
+using Horse.Mvc;
+using Horse.Mvc.Auth;
+using Horse.Mvc.Controllers;
+using Horse.Mvc.Controllers.Parameters;
+using Horse.Mvc.Filters.Route;
 
 namespace Sample.Mvc.Controller
 {
     [TestControllerFilter]
     [Route("[controller]")]
-    public class OtherController : TwinoController
+    public class OtherController : HorseController
     {
         [HttpGet("hello")]
         public IActionResult Hello([FromQuery] string name)

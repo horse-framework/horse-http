@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
-using Twino.Protocols.Http;
-using Twino.Server;
+using Horse.Protocols.Http;
+using Horse.Server;
 
 namespace Benchmark.Json
 {
@@ -10,11 +10,11 @@ namespace Benchmark.Json
     {
         static void Main(string[] args)
         {
-            TwinoServer server = new TwinoServer(ServerOptions.CreateDefault());
+            HorseServer server = new HorseServer(ServerOptions.CreateDefault());
             server.UseHttp(async (request, response) =>
             {
                 if (request.Path.Equals("/json", StringComparison.InvariantCultureIgnoreCase))
-                    response.SetToJson(new { message = "Hello, World!" });
+                    response.SetToJson(new {message = "Hello, World!"});
                 else
                     response.StatusCode = HttpStatusCode.NotFound;
 

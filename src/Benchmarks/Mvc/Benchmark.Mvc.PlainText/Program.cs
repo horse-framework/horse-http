@@ -1,6 +1,6 @@
 ﻿using System;
-using Twino.Mvc;
-using Twino.Server;
+using Horse.Mvc;
+using Horse.Server;
 
 namespace Benchmark.Mvc.PlainText
 {
@@ -8,23 +8,18 @@ namespace Benchmark.Mvc.PlainText
     {
         static void Main(string[] args)
         {
-            TwinoServer server = new TwinoServer();
-            
-            TwinoMvc mvc = new TwinoMvc();
-            mvc.Init(services =>
-            {
+            HorseServer server = new HorseServer();
 
-            });
+            HorseMvc mvc = new HorseMvc();
+            mvc.Init(services => { });
 
             mvc.Use(app =>
             {
                 IServiceProvider provider = app.GetProvider();
             });
-            
+
             server.UseMvc(mvc);
-            
-            server.Start(5000);
-            server.BlockWhileRunning();
+            server.Run(5000);
         }
     }
 }

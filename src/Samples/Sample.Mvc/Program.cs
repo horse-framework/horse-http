@@ -3,14 +3,14 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using Twino.Mvc;
-using Twino.Mvc.Auth;
-using Twino.Mvc.Auth.Jwt;
-using Twino.Mvc.Errors;
-using Twino.Mvc.Middlewares;
-using Twino.Mvc.Results;
-using Twino.Protocols.Http;
-using Twino.Server;
+using Horse.Mvc;
+using Horse.Mvc.Auth;
+using Horse.Mvc.Auth.Jwt;
+using Horse.Mvc.Errors;
+using Horse.Mvc.Middlewares;
+using Horse.Mvc.Results;
+using Horse.Protocols.Http;
+using Horse.Server;
 
 namespace Sample.Mvc
 {
@@ -43,7 +43,7 @@ namespace Sample.Mvc
     {
         static void Main(string[] args)
         {
-            TwinoMvc mvc = new TwinoMvc();
+            HorseMvc mvc = new HorseMvc();
 
             mvc.IsDevelopment = false;
             mvc.Init(services =>
@@ -82,7 +82,7 @@ namespace Sample.Mvc
                 app.UseFiles("/download", "/home/mehmet/files");
             });
 
-            TwinoServer server = new TwinoServer();
+            HorseServer server = new HorseServer();
             var opt = HttpOptions.CreateDefault();
             opt.HttpConnectionTimeMax = 0;
             server.UseMvc(mvc, opt);

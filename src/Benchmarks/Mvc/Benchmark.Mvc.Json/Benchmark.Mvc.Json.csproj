@@ -6,12 +6,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Twino.Core" Version="4.2.0" />
-        <PackageReference Include="Twino.Server" Version="4.2.0" />
+        <PackageReference Include="Horse.Core" Version="4.3.2" />
+        <PackageReference Include="Horse.Server" Version="4.3.2" />
     </ItemGroup>
-    
+
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Twino.Mvc\Twino.Mvc.csproj" />
+      <ProjectReference Include="..\..\..\Horse.Mvc\Horse.Mvc.csproj" />
     </ItemGroup>
 
 </Project>

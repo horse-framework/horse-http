@@ -1,14 +1,14 @@
 using System.Threading.Tasks;
-using Twino.Mvc;
-using Twino.Mvc.Controllers;
-using Twino.Mvc.Filters.Route;
+using Horse.Mvc;
+using Horse.Mvc.Controllers;
+using Horse.Mvc.Filters.Route;
 
 namespace Test.Mvc.Controllers
 {
     [Route("")]
     [Route("test")]
     [Route("[controller]")]
-    public class Test1Controller : TwinoController
+    public class Test1Controller : HorseController
     {
         [HttpGet("")]
         public async Task<IActionResult> IndexGet()
