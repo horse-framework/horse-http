@@ -3,11 +3,11 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <LangVersion>8</LangVersion>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Horse.Server" Version="4.3.2" />
+        <PackageReference Include="Horse.Server" Version="5.0.1" />
     </ItemGroup>
     
     <ItemGroup>
