@@ -1,16 +1,16 @@
 using System;
 using System.Net;
 using Test.Mvc.Models;
-using Twino.Mvc;
-using Twino.Mvc.Controllers;
-using Twino.Mvc.Controllers.Parameters;
-using Twino.Mvc.Filters.Route;
-using Twino.Mvc.Results;
+using Horse.Mvc;
+using Horse.Mvc.Controllers;
+using Horse.Mvc.Controllers.Parameters;
+using Horse.Mvc.Filters.Route;
+using Horse.Mvc.Results;
 
 namespace Test.Mvc.Controllers
 {
     [Route("[controller]")]
-    public class HomeController : TwinoController
+    public class HomeController : HorseController
     {
         [HttpGet("get")]
         public IActionResult Get()

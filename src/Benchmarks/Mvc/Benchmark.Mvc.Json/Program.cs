@@ -1,6 +1,6 @@
-﻿using Twino.Mvc;
-using Twino.Protocols.Http;
-using Twino.Server;
+﻿using Horse.Mvc;
+using Horse.Protocols.Http;
+using Horse.Server;
 
 namespace Benchmark.Mvc.Json
 {
@@ -8,8 +8,9 @@ namespace Benchmark.Mvc.Json
     {
         static void Main(string[] args)
         {
-            TwinoMvc mvc = new TwinoMvc();
-            TwinoServer server = new TwinoServer();
+            HorseMvc mvc = new HorseMvc();
+            HorseServer
+                server = new HorseServer();
             mvc.Init();
             server.UseMvc(mvc, HttpOptions.CreateDefault());
             server.Run();

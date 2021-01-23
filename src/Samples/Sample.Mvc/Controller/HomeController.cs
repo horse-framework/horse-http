@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Twino.Mvc;
-using Twino.Mvc.Controllers;
-using Twino.Mvc.Filters.Route;
+using Horse.Mvc;
+using Horse.Mvc.Controllers;
+using Horse.Mvc.Filters.Route;
 
 namespace Sample.Mvc.Controller
 {
     [Route("a")]
-    public class HomeController : TwinoController
+    public class HomeController : HorseController
     {
         [HttpGet("b")]
         public Task<IActionResult> Get()

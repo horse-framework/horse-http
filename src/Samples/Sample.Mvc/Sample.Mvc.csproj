@@ -3,16 +3,16 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <LangVersion>8</LangVersion>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Twino.Server" Version="4.2.0" />
+        <PackageReference Include="Horse.Server" Version="5.0.1" />
     </ItemGroup>
     
     <ItemGroup>
-        <ProjectReference Include="..\..\Twino.Mvc.Auth.Jwt\Twino.Mvc.Auth.Jwt.csproj" />
-        <ProjectReference Include="..\..\Twino.Mvc\Twino.Mvc.csproj" />
+        <ProjectReference Include="..\..\Horse.Mvc.Auth.Jwt\Horse.Mvc.Auth.Jwt.csproj" />
+        <ProjectReference Include="..\..\Horse.Mvc\Horse.Mvc.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Update="twino.json">
+        <None Update="horse.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>

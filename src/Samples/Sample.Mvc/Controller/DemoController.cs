@@ -2,11 +2,11 @@
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Twino.Mvc;
-using Twino.Mvc.Controllers;
-using Twino.Mvc.Controllers.Parameters;
-using Twino.Mvc.Filters.Route;
-using Twino.Mvc.Results;
+using Horse.Mvc;
+using Horse.Mvc.Controllers;
+using Horse.Mvc.Controllers.Parameters;
+using Horse.Mvc.Filters.Route;
+using Horse.Mvc.Results;
 
 namespace Sample.Mvc.Controller
 {
@@ -16,14 +16,13 @@ namespace Sample.Mvc.Controller
     }
 
     [Route("[controller]")]
-    public class DemoController : TwinoController
+    public class DemoController : HorseController
     {
-
         [HttpGet("file")]
         public IActionResult File()
         {
-            FileStream fs = new FileStream("/home/mehmet/Desktop/twino/kmöğx.pdf", FileMode.Open, FileAccess.Read);
-            FileResult file = new FileResult(fs, "kmöğx.pdf");
+            FileStream fs = new FileStream("/home/mehmet/Desktop/horse/test.pdf", FileMode.Open, FileAccess.Read);
+            FileResult file = new FileResult(fs, "test.pdf");
             return file;
         }
 
@@ -75,9 +74,9 @@ namespace Sample.Mvc.Controller
         public async Task<IActionResult> Get2()
         {
             return await JsonAsync(new
-            {
-                Message = "Hello World 2: "
-            });
+                                   {
+                                       Message = "Hello World 2: "
+                                   });
         }
 
         [HttpGet("optional/{?num}")]

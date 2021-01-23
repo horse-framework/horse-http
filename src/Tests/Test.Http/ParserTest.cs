@@ -2,8 +2,8 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using Twino.Core.Protocols;
-using Twino.Protocols.Http;
+using Horse.Core.Protocols;
+using Horse.Protocols.Http;
 using Xunit;
 
 namespace Test.Http

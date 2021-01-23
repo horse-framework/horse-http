@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
-using Twino.Mvc;
-using Twino.Mvc.Controllers;
-using Twino.Mvc.Filters.Route;
+using Horse.Mvc;
+using Horse.Mvc.Controllers;
+using Horse.Mvc.Filters.Route;
 
 namespace Benchmark.Mvc.Json
 {
     [Route("json")]
-    public class JsonController : TwinoController
+    public class JsonController : HorseController
     {
         [HttpGet]
         public async Task<IActionResult> Get()

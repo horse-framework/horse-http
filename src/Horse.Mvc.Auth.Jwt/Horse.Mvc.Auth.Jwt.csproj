@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Title>Horse.Mvc.Auth.Jwt</Title>
+    <Product>Horse.Mvc.Auth.Jwt</Product>
+    <Description>JSON Web Token Authentication and Authorization library for Horse MVC</Description>
+    <PackageTags>horse,http,mvc,jwt,token,authentication,authorization</PackageTags>
+    <AssemblyVersion>5.0.1</AssemblyVersion>
+    <FileVersion>5.0.1</FileVersion>
+    <PackageVersion>5.0.1</PackageVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Mehmet Helvacıköylü;Emre Hızlı</Authors>
+    <PackageProjectUrl>https://github.com/horse-framework/horse-mvc</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/horse-framework/horse-mvc/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/horse-framework/horse-mvc</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DocumentationFile>bin\Debug\Horse.Mvc.Auth.Jwt.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DocumentationFile>bin\Release\Horse.Mvc.Auth.Jwt.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Horse.Mvc\Horse.Mvc.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,15 +1,15 @@
 ﻿using Sample.Mvc.Models;
 using System.Threading.Tasks;
-using Twino.Mvc;
-using Twino.Mvc.Auth;
-using Twino.Mvc.Auth.Jwt;
-using Twino.Mvc.Controllers;
-using Twino.Mvc.Controllers.Parameters;
-using Twino.Mvc.Filters.Route;
+using Horse.Mvc;
+using Horse.Mvc.Auth;
+using Horse.Mvc.Auth.Jwt;
+using Horse.Mvc.Controllers;
+using Horse.Mvc.Controllers.Parameters;
+using Horse.Mvc.Filters.Route;
 
 namespace Sample.Mvc.Controller
 {
-    public class AuthController : TwinoController
+    public class AuthController : HorseController
     {
         private IJwtProvider _jwtProvider;
 

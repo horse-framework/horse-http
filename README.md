@@ -1,10 +1,10 @@
-# Twino MVC
+# Horse MVC
 
-[![NuGet](https://img.shields.io/nuget/v/Twino.Mvc?label=mvc%20nuget)](https://www.nuget.org/packages/Twino.Mvc)
-[![NuGet](https://img.shields.io/nuget/v/Twino.Mvc.Auth.Jwt?label=jwt%20extension%20nuget)](https://www.nuget.org/packages/Twino.Mvc.Auth.Jwt)
-[![NuGet](https://img.shields.io/nuget/v/Twino.Protocols.Http?label=http%20server%20nuget)](https://www.nuget.org/packages/Twino.Protocols.Http)
+[![NuGet](https://img.shields.io/nuget/v/Horse.Mvc?label=mvc%20nuget)](https://www.nuget.org/packages/Horse.Mvc)
+[![NuGet](https://img.shields.io/nuget/v/Horse.Mvc.Auth.Jwt?label=jwt%20extension%20nuget)](https://www.nuget.org/packages/Horse.Mvc.Auth.Jwt)
+[![NuGet](https://img.shields.io/nuget/v/Horse.Protocols.Http?label=http%20server%20nuget)](https://www.nuget.org/packages/Horse.Protocols.Http)
 
-Twino MVC is an HTTP Server with MVC Architecture. It's usage is very similar to ASP.NET Core and faster. You can also ise core Protocols.Http library for basic HTTP server without MVC.
+Horse MVC is an HTTP Server with MVC Architecture. It's usage is very similar to ASP.NET Core and faster. You can also ise core Protocols. Http library for basic HTTP server without MVC.
 
 
 ### Basic Example
@@ -13,7 +13,7 @@ Twino MVC is an HTTP Server with MVC Architecture. It's usage is very similar to
     {
         static void Main(string[] args)
         {
-            TwinoMvc mvc = new TwinoMvc();
+            HorseMvc mvc = new HorseMvc();
             mvc.Init(m =>
             {
                 //initialization
@@ -25,21 +25,18 @@ Twino MVC is an HTTP Server with MVC Architecture. It's usage is very similar to
             });
 
             //create new twino server
-            TwinoServer server = new TwinoServer();
+            HorseServer server = new HorseServer();
             
             //bind MVC to the server
             server.UseMvc(mvc, HttpOptions.CreateDefault());
             
             //start server
-            server.Start();
-            
-            //server runs async, if you want to block the current thread
-            server.BlockWhileRunning();
+            server.Run();
         }
     }
 
     [Route("[controller]")]
-    public class DemoController : TwinoController
+    public class DemoController : HorseController
     {
         [HttpGet("get/{?id}")]
         public Task<IActionResult> Get([FromRoute] int? id)
@@ -61,7 +58,7 @@ Twino MVC is an HTTP Server with MVC Architecture. It's usage is very similar to
     {
         static void Main(string[] args)
         {
-            TwinoMvc mvc = new TwinoMvc();
+            HorseMvc mvc = new HorseMvc();
             mvc.Init(m =>
             {
                 //initialization
@@ -82,28 +79,25 @@ Twino MVC is an HTTP Server with MVC Architecture. It's usage is very similar to
                 app.UseMiddleware(cors);
             });
 
-            //create new twino server
-            TwinoServer server = new TwinoServer();
+            //create new horse server
+            HorseServer server = new HorseServer();
             
             //bind MVC to the server
             server.UseMvc(mvc, HttpOptions.CreateDefault());
             
             //start server
-            server.Start();
-            
-            //server runs async, if you want to block the current thread
-            server.BlockWhileRunning();
+            server.Run();
         }
     }
     
     [Route("[controller]")]
-    public class DemoController : TwinoController
+    public class DemoController : HorseController
     {
         [HttpGet]
         [Authorize]
         public Task<IActionResult> Get()
         {
-            //you can use User property of TwinoController
+            //you can use User property of HorseController
             
             return StringAsync("Hello, World!");
         }
@@ -116,7 +110,7 @@ Twino MVC is an HTTP Server with MVC Architecture. It's usage is very similar to
     {
         static void Main(string[] args)
         {
-            TwinoMvc mvc = new TwinoMvc();
+            HorseMvc mvc = new HorseMvc();
             
             mvc.Init();
             
@@ -139,16 +133,13 @@ Twino MVC is an HTTP Server with MVC Architecture. It's usage is very similar to
             mvc.ErrorHandler = new CustomErrorHandler();
             
             //create new twino server
-            TwinoServer server = new TwinoServer();
+            HorseServer server = new HorseServer();
             
             //bind MVC to the server
             server.UseMvc(mvc, HttpOptions.CreateDefault());
             
             //start server
-            server.Start();
-            
-            //server runs async, if you want to block the current thread
-            server.BlockWhileRunning();
+            server.Run();
         }
     }
 

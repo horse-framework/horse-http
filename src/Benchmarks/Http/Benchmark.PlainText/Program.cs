@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
-using Twino.Protocols.Http;
-using Twino.Server;
+using Horse.Protocols.Http;
+using Horse.Server;
 
 namespace Benchmark.PlainText
 {
@@ -10,7 +10,7 @@ namespace Benchmark.PlainText
     {
         static void Main(string[] args)
         {
-            TwinoServer server = new TwinoServer(ServerOptions.CreateDefault());
+            HorseServer server = new HorseServer(ServerOptions.CreateDefault());
             server.UseHttp((request, response) =>
             {
                 if (request.Path.Equals("/plaintext", StringComparison.InvariantCultureIgnoreCase))

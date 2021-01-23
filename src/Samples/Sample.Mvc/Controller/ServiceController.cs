@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
-using Twino.Mvc;
-using Twino.Mvc.Controllers;
-using Twino.Mvc.Filters.Route;
+using Horse.Mvc;
+using Horse.Mvc.Controllers;
+using Horse.Mvc.Filters.Route;
 
 namespace Sample.Mvc.Controller
 {
     [Route("service")]
-    public class ServiceController : TwinoController
+    public class ServiceController : HorseController
     {
         [HttpGet("get")]
         public async Task<IActionResult> Get()

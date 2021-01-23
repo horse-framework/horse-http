@@ -1,12 +1,12 @@
-﻿using Twino.Mvc;
-using Twino.Mvc.Auth;
-using Twino.Mvc.Controllers;
-using Twino.Mvc.Filters.Route;
+﻿using Horse.Mvc;
+using Horse.Mvc.Auth;
+using Horse.Mvc.Controllers;
+using Horse.Mvc.Filters.Route;
 
 namespace Sample.Mvc.Controller
 {
     [Route("api/[controller]")]
-    public class SimpleController : TwinoController
+    public class SimpleController : HorseController
     {
         [HttpGet("go/{?id}")]
         [Authorize(Roles = "Role1,Role2")]

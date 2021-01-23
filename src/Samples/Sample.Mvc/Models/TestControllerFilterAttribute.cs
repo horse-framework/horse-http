@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Twino.Mvc;
-using Twino.Mvc.Controllers;
-using Twino.Mvc.Filters;
+using Horse.Mvc;
+using Horse.Mvc.Controllers;
+using Horse.Mvc.Filters;
 
 namespace Sample.Mvc.Models
 {

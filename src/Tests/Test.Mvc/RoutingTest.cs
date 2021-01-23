@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Test.Mvc.Arrange;
-using Twino.Mvc;
-using Twino.Mvc.Controllers;
-using Twino.Mvc.Routing;
-using Twino.Protocols.Http;
+using Horse.Mvc;
+using Horse.Mvc.Controllers;
+using Horse.Mvc.Routing;
+using Horse.Protocols.Http;
 using Xunit;
 
 namespace Test.Mvc
@@ -20,7 +20,7 @@ namespace Test.Mvc
         [ClassData(typeof(RoutingTestData))]
         public async Task FindRoutes(string method, string path, string aResult)
         {
-            TwinoMvc mvc = new TwinoMvc();
+            HorseMvc mvc = new HorseMvc();
             mvc.Init();
             mvc.CreateRoutes(Assembly.GetExecutingAssembly());
             mvc.Use();
@@ -34,7 +34,7 @@ namespace Test.Mvc
             RouteMatch match = mvc.RouteFinder.Find(mvc.Routes, request);
             Assert.NotNull(match);
 
-            TwinoController controller = mvc.ControllerFactory.CreateInstance(mvc, 
+            HorseController controller = mvc.ControllerFactory.CreateInstance(mvc, 
                                                                               match.Route.ControllerType, 
                                                                               request, 
                                                                               response, 
