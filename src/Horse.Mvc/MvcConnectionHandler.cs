@@ -147,6 +147,25 @@ namespace Horse.Mvc
                 }
             }
 
+            if (Mvc.ActionRoutes.Count > 0)
+            {
+                ActionRoute actionRoute = Mvc.RouteFinder.FindAction(Mvc.ActionRoutes, request);
+                if (actionRoute != null)
+                {
+                    IActionResult actionResult = null;
+                    if (actionRoute.Action != null)
+                        actionResult = actionRoute.Action(request);
+                    else if (actionRoute.AsyncAction != null)
+                        actionResult = await actionRoute.AsyncAction(request);
+
+                    if (actionResult != null)
+                    {
+                        WriteResponse(response, actionResult);
+                        return;
+                    }
+                }
+            }
+
             //find controller route
             RouteMatch match = Mvc.RouteFinder.Find(Mvc.Routes, request);
             if (match?.Route == null)
