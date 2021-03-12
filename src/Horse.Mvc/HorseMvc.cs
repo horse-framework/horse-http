@@ -31,6 +31,11 @@ namespace Horse.Mvc
         internal List<RouteLeaf> Routes { get; private set; }
 
         /// <summary>
+        /// Action Routes
+        /// </summary>
+        internal List<ActionRoute> ActionRoutes { get; private set; }
+
+        /// <summary>
         /// File download routes
         /// </summary>
         public List<FileRoute> FileRoutes { get; private set; }
@@ -149,6 +154,7 @@ namespace Horse.Mvc
         {
             Routes = new List<RouteLeaf>();
             FileRoutes = new List<FileRoute>();
+            ActionRoutes = new List<ActionRoute>();
             CreateRoutes();
         }
 

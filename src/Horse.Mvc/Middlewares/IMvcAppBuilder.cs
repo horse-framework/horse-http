@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Threading.Tasks;
 using Horse.Protocols.Http;
 
 namespace Horse.Mvc.Middlewares
@@ -13,7 +14,7 @@ namespace Horse.Mvc.Middlewares
         /// Gets MSDI service provider for horse mvc
         /// </summary>
         IServiceProvider GetProvider();
-        
+
         /// <summary>
         /// Uses middleware from instance
         /// </summary>
@@ -47,5 +48,15 @@ namespace Horse.Mvc.Middlewares
         /// Each request is filtered by validation method
         /// </summary>
         void UseFiles(string urlPath, string[] physicalPaths, Func<HttpRequest, HttpStatusCode> validation);
+
+        /// <summary>
+        /// Uses action route
+        /// </summary>
+        void UseActionRoute(string urlPath, Func<HttpRequest, Task<IActionResult>> action);
+
+        /// <summary>
+        /// Uses action route
+        /// </summary>
+        void UseActionRoute(string urlPath, Func<HttpRequest, IActionResult> action);
     }
 }

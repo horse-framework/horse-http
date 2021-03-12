@@ -9,7 +9,6 @@ namespace Horse.Mvc.Routing
     /// </summary>
     public interface IRouteFinder
     {
-
         /// <summary>
         /// Finds file from request url
         /// </summary>
@@ -20,5 +19,9 @@ namespace Horse.Mvc.Routing
         /// </summary>
         RouteMatch Find(IEnumerable<RouteLeaf> routes, HttpRequest request);
 
+        /// <summary>
+        /// Finds action route from request url
+        /// </summary>
+        ActionRoute FindAction(IEnumerable<ActionRoute> routes, HttpRequest request);
     }
 }

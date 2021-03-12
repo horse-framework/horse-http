@@ -186,5 +186,13 @@ namespace Horse.Mvc.Routing
 
             return match;
         }
+
+        /// <summary>
+        /// Finds action route from request
+        /// </summary>
+        public ActionRoute FindAction(IEnumerable<ActionRoute> routes, HttpRequest request)
+        {
+            return routes.FirstOrDefault(x => request.Path.Equals(x.VirtualPath, StringComparison.InvariantCultureIgnoreCase));
+        }
     }
 }

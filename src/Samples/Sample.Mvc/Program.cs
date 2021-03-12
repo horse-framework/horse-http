@@ -77,6 +77,8 @@ namespace Sample.Mvc
 
             mvc.Use(app =>
             {
+                app.UseActionRoute("/test-action", request => new StringResult("Hello, Test Action!"));
+                
                 app.UseMiddleware(cors);
                 app.UseMiddleware<TMid>();
                 app.UseFiles("/download", "/home/mehmet/files");
@@ -86,8 +88,7 @@ namespace Sample.Mvc
             var opt = HttpOptions.CreateDefault();
             opt.HttpConnectionTimeMax = 0;
             server.UseMvc(mvc, opt);
-            server.Start(4410);
-            server.BlockWhileRunning();
+            server.Run(4410);
         }
     }
 }
