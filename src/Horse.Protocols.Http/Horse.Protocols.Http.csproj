@@ -6,9 +6,9 @@
     <Product>Horse.Protocols.Http</Product>
     <Description>Horse Http Protocol library and server extension for Horse Server</Description>
     <PackageTags>horse,tcp,server,http,protocol</PackageTags>
-    <AssemblyVersion>5.0.2</AssemblyVersion>
-    <FileVersion>5.0.2</FileVersion>
-    <PackageVersion>5.0.2</PackageVersion>
+    <AssemblyVersion>5.0.4</AssemblyVersion>
+    <FileVersion>5.0.4</FileVersion>
+    <PackageVersion>5.0.4</PackageVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Mehmet Helvacıköylü;Emre Hızlı</Authors>
     <PackageProjectUrl>https://github.com/horse-framework/horse-mvc</PackageProjectUrl>
@@ -26,7 +26,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Horse.Core" Version="5.0.1" />
+    <PackageReference Include="Horse.Core" Version="5.0.2" />
   </ItemGroup>
   
 </Project>
