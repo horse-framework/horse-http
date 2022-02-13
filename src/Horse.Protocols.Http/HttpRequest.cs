@@ -7,6 +7,8 @@ using Horse.Protocols.Http.Forms;
 [assembly: InternalsVisibleTo("Test.Mvc")]
 [assembly: InternalsVisibleTo("Horse.Server")]
 [assembly: InternalsVisibleTo("Horse.Client.WebSocket")]
+[assembly: InternalsVisibleTo("Horse.WebSocket.Client")]
+[assembly: InternalsVisibleTo("Horse.WebSocket.Protocol")]
 
 namespace Horse.Protocols.Http
 {
