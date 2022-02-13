@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Title>Horse.Protocols.Http</Title>
     <Product>Horse.Protocols.Http</Product>
     <Description>Horse Http Protocol library and server extension for Horse Server</Description>
@@ -14,6 +14,7 @@
     <PackageProjectUrl>https://github.com/horse-framework/horse-mvc</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/horse-framework/horse-mvc/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/horse-framework/horse-mvc</RepositoryUrl>
+    <LangVersion>10</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -25,8 +26,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Horse.Core" Version="5.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Horse.Core" Version="6.0.1" />
   </ItemGroup>
   
 </Project>

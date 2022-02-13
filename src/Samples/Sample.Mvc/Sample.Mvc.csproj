@@ -2,12 +2,12 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <LangVersion>8</LangVersion>
-        <TargetFramework>net5.0</TargetFramework>
+        <LangVersion>10</LangVersion>
+        <TargetFramework>net6.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Horse.Server" Version="5.0.2" />
+        <PackageReference Include="Horse.Server" Version="6.0.1" />
     </ItemGroup>
     
     <ItemGroup>
