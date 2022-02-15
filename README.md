@@ -1,10 +1,10 @@
-# Horse MVC
+# Horse HTTP
 
 [![NuGet](https://img.shields.io/nuget/v/Horse.Mvc?label=mvc%20nuget)](https://www.nuget.org/packages/Horse.Mvc)
 [![NuGet](https://img.shields.io/nuget/v/Horse.Mvc.Auth.Jwt?label=jwt%20extension%20nuget)](https://www.nuget.org/packages/Horse.Mvc.Auth.Jwt)
 [![NuGet](https://img.shields.io/nuget/v/Horse.Protocols.Http?label=http%20server%20nuget)](https://www.nuget.org/packages/Horse.Protocols.Http)
 
-Horse MVC is an HTTP Server with MVC Architecture. It's usage is very similar to ASP.NET Core and faster. You can also ise core Protocols. Http library for basic HTTP server without MVC.
+Horse HTTP is an HTTP Server implementation of Horse Server. Horse MVC is MVC architecture layer of http server. It's usage is very similar to ASP.NET Core and faster. You can also ise core Protocols. Http library for basic HTTP server without MVC.
 
 
 ### Basic Example
