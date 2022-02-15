@@ -1,4 +1,4 @@
-# Horse MVC
+# Horse HTTP
 
 [![NuGet](https://img.shields.io/nuget/v/Horse.Mvc?label=mvc%20nuget)](https://www.nuget.org/packages/Horse.Mvc)
 [![NuGet](https://img.shields.io/nuget/v/Horse.Mvc.Auth.Jwt?label=jwt%20extension%20nuget)](https://www.nuget.org/packages/Horse.Mvc.Auth.Jwt)
