@@ -177,7 +177,16 @@ namespace Horse.Mvc
             //read user token
             ClaimsPrincipal user = null;
             if (Mvc.ClaimsPrincipalValidator != null)
-                user = Mvc.ClaimsPrincipalValidator.Get(request);
+            {
+                try
+                {
+                    user = Mvc.ClaimsPrincipalValidator.Get(request);
+                }
+                catch (Exception e)
+                {
+                    Mvc.ErrorHandler?.Error(request, e);
+                }
+            }
 
             FilterContext context = new FilterContext
                                     {
