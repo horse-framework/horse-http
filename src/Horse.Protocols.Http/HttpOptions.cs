@@ -31,6 +31,11 @@ namespace Horse.Protocols.Http
         public string[] Hostnames { get; set; }
 
         /// <summary>
+        /// If true, status code responses will have default horse status code response body. Default is true.
+        /// </summary>
+        public bool UseDefaultStatusCodeResponse { get; set; } = true;
+
+        /// <summary>
         /// Createsd default HTTP server options
         /// </summary>
         public static HttpOptions CreateDefault()

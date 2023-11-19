@@ -61,7 +61,7 @@ namespace Horse.Protocols.Http
         internal async Task Write(HttpResponse response)
         {
             Stream stream = response.NetworkStream;
-            Stream resultStream;
+            Stream resultStream = null;
             bool hasStream = response.HasStream() && response.ResponseStream.Length > 0;
 
             if (hasStream)
@@ -79,19 +79,15 @@ namespace Horse.Protocols.Http
 
             //if response stream does not exists
             //we are checking to find a response message for http status code
-            else
+            else if (_options.UseDefaultStatusCodeResponse)
             {
-                byte[] bytes;
-
-                bool found = PredefinedResults.Statuses.TryGetValue(response.StatusCode, out bytes);
+                bool found = PredefinedResults.Statuses.TryGetValue(response.StatusCode, out var bytes);
                 if (found && bytes != null)
                 {
                     resultStream = new MemoryStream(bytes);
                     response.ContentEncoding = ContentEncodings.None;
                     hasStream = true;
                 }
-                else
-                    resultStream = null;
             }
 
             await using MemoryStream m = new MemoryStream();

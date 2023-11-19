@@ -120,7 +120,14 @@ namespace Horse.Mvc
         /// <summary>
         /// Creates new Horse MVC
         /// </summary>
-        public HorseMvc()
+        public HorseMvc() : this(new ServiceCollection())
+        {
+        }
+
+        /// <summary>
+        /// Creates new Horse MVC
+        /// </summary>
+        public HorseMvc(IServiceCollection services)
         {
             Routes = new List<RouteLeaf>();
             RouteFinder = new RouteFinder();
@@ -130,8 +137,7 @@ namespace Horse.Mvc
             Policies = new PolicyContainer();
 
             AppBuilder = new MvcAppBuilder(this);
-
-            _services = new ServiceCollection();
+            _services = services;
         }
 
         #endregion
@@ -181,9 +187,9 @@ namespace Horse.Mvc
                 assemblies.Add(assembly);
 
             List<Type> types = assemblies
-                               .SelectMany(x => x.GetTypes())
-                               .Where(type => interfaceType.IsAssignableFrom(type))
-                               .ToList();
+                .SelectMany(x => x.GetTypes())
+                .Where(type => interfaceType.IsAssignableFrom(type))
+                .ToList();
 
             List<RouteLeaf> leaves = new List<RouteLeaf>();
 
@@ -222,11 +228,28 @@ namespace Horse.Mvc
         /// <summary>
         /// Runs Horse MVC Server as async, with middleware implementation
         /// </summary>
+        public void Use(IServiceProvider provider, Action<IMvcAppBuilder> action)
+        {
+            ServiceProvider = provider;
+            if (action != null)
+                action(AppBuilder);
+        }
+
+        /// <summary>
+        /// Runs Horse MVC Server as async without middleware implementation
+        /// </summary>
+        public void Use(IServiceProvider provider)
+        {
+            ServiceProvider = provider;
+        }
+
+        /// <summary>
+        /// Runs Horse MVC Server as async, with middleware implementation
+        /// </summary>
         public void Use(Action<IMvcAppBuilder> action)
         {
             ServiceProvider = _services.BuildServiceProvider();
-            if (action != null)
-                action(AppBuilder);
+            action?.Invoke(AppBuilder);
         }
 
         /// <summary>
@@ -236,7 +259,7 @@ namespace Horse.Mvc
         {
             ServiceProvider = _services.BuildServiceProvider();
         }
-        
+
         #endregion
     }
 }

@@ -34,18 +34,18 @@ namespace Test.Mvc
             RouteMatch match = mvc.RouteFinder.Find(mvc.Routes, request);
             Assert.NotNull(match);
 
-            HorseController controller = mvc.ControllerFactory.CreateInstance(mvc, 
-                                                                              match.Route.ControllerType, 
-                                                                              request, 
-                                                                              response, 
-                                                                              mvc.ServiceProvider.CreateScope());
+            HorseController controller = mvc.ControllerFactory.CreateInstance(mvc,
+                match.Route.ControllerType,
+                request,
+                response,
+                mvc.ServiceProvider.CreateScope());
 
             MvcConnectionHandler handler = new MvcConnectionHandler(mvc, null);
 
             var parameters = (await handler.FillParameters(request, match)).Select(x => x.Value).ToArray();
             Task<IActionResult> task = (Task<IActionResult>) match.Route.ActionType.Invoke(controller, parameters);
 
-            IActionResult result = task.Result;
+            IActionResult result = await task;
             string url = Encoding.UTF8.GetString(((MemoryStream) result.Stream).ToArray());
             url.Should().Be(aResult);
         }

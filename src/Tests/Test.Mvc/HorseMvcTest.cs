@@ -1,6 +1,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
+using System.Threading.Tasks;
 using Test.Mvc.Controllers;
 using Horse.Mvc;
 using Horse.Protocols.Http;
@@ -12,7 +13,7 @@ namespace Test.Mvc
     public class HorseMvcTest
     {
         [Fact]
-        public void Run()
+        public async Task Run()
         {
             HorseMvc mvc = new HorseMvc();
 
@@ -30,7 +31,7 @@ namespace Test.Mvc
             System.Threading.Thread.Sleep(1000);
 
             HttpClient client = new HttpClient();
-            HttpResponseMessage response = client.GetAsync("http://127.0.0.1:47442/home/get").Result;
+            HttpResponseMessage response = await client.GetAsync("http://127.0.0.1:47442/home/get");
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
     }
