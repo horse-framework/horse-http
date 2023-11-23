@@ -129,8 +129,7 @@ namespace Horse.Protocols.Http
             }
             catch (Exception e)
             {
-                if (_server.Logger != null)
-                    _server.Logger.LogException("Unhandled Exception", e);
+                _server.Logger?.LogException("Unhandled Exception", e);
             }
 
             HttpReader reader = new HttpReader(Options);
@@ -211,8 +210,7 @@ namespace Horse.Protocols.Http
             }
             catch (Exception ex)
             {
-                if (_server.Logger != null)
-                    _server.Logger.LogException("Unhandled Exception", ex);
+                _server.Logger?.LogException("Unhandled Exception", ex);
             }
 
             await writer.Write(message.Response);

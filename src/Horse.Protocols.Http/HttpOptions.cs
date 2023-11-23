@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,7 +71,7 @@ namespace Horse.Protocols.Http
                 options.Hostnames = obj["Hostnames"].Values<string>().ToArray();
 
             JToken supportedEncodings = obj["SupportedEncodings"];
-            string[] sx = supportedEncodings != null ? supportedEncodings.Values<string>().ToArray() : new string[0];
+            string[] sx = supportedEncodings != null ? supportedEncodings.Values<string>().ToArray() : Array.Empty<string>();
             List<ContentEncodings> encodings = new List<ContentEncodings>();
 
             foreach (string s in sx)

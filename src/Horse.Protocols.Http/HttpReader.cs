@@ -451,7 +451,7 @@ namespace Horse.Protocols.Http
                 else
                 {
                     request.Form = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
-                    request.Files = new IFormFile[0];
+                    request.Files = Array.Empty<IFormFile>();
                 }
             }
             else if (request.ContentType.Equals(HttpHeaders.APPLICATION_FORM_URLENCODED, StringComparison.InvariantCultureIgnoreCase))
