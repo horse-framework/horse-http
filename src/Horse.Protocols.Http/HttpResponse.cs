@@ -105,7 +105,7 @@ namespace Horse.Protocols.Http
         /// Set true when stream dispose is prevented by GC.
         /// If this value is true, Re-register of GC will be called after response write operation completed
         /// </summary>
-        internal bool StreamSuppressed { get; private set; }
+        public bool StreamSuppressed { get; private set; }
 
         #endregion
 

@@ -187,7 +187,7 @@ namespace Horse.Mvc
                 assemblies.Add(assembly);
 
             List<Type> types = assemblies
-                .SelectMany(x => x.GetTypes())
+                .SelectMany(x => x.GetExportedTypes())
                 .Where(type => interfaceType.IsAssignableFrom(type))
                 .ToList();
 
